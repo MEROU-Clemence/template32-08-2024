@@ -1,3 +1,19 @@
+/*Variables*/
+:root {
+    --color-link: #6FA3D7;
+    --color-btn: #6FA3D7;
+    --color-btn-txt: #FFFFFF;
+    --color-text: #131313;
+    --color-text-white: #FFFFFF;
+    --color-title: #292B2C;
+    --color-bg-1: #FFFFFF;
+    --color-bg-2: #E0E8F1;
+    --color-bg-3: #292B2C;
+    --color-red: #DB4716;
+    --font-title: Krona One;
+    --font-text: Jost;
+}
+
 /****** FOR ALL ******/
 * {
     box-sizing: border-box;
