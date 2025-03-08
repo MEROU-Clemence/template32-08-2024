@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="{{CurrentLang.IsoLang}}" culture="{{CurrentLang.CultureLang}}">
+<head>
+    <title>{{ResourcesTemplate.BookTitle}} - {{CustomTitle}} - {{City}} - {{Country}}</title>
+    <meta name="description" content="{{MetaDescriptionOnlineReservation}}">
+    {{>CommonMetaTags}}
+    <link rel="canonical" href="{{UrlOnlineBooking}}" />
+    <meta property="og:url" content="{{UrlOnlineBooking}}" />
+    <meta property="og:title" content="{{ResourcesTemplate.BookTitle}}" />
+    <meta property="og:image" content="{{#Photos.0}}{{UrlMedias}}/crop-300x200/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.0}}" />
+    <meta property="og:description" content="{{MetaDescriptionOnlineReservation}}" />
+    {{>FaviconTags}}
+    {{>CommonStylesheets}}
+    {{#HasBookingActivated}}{{>ScriptCalendarClick}}{{/HasBookingActivated}}
+</head>
+<body>
+    {{{ScriptAnalytics}}}
+    {{{GoogleTagManagerBody}}}
+    {{>Header}}
+
+    <main>
+        <!-- SECTION TITLE -->
+        <section class="section section-title-general">
+            <div class="content-section principal-title principal-title-other-pages">
+                {{^isActivity}}
+                <h1>{{ResourcesTemplate.BookYourTrip}}</h1>
+                {{/isActivity}}
+                {{#isActivity}}
+                <h1>{{ResourcesTemplate.BookYourActivity}}</h1>
+                {{/isActivity}}
+            </div>
+        </section>
+
+        <!-- SECTION WIDGET BE -->
+        <section class="section-widget-be section-widget-be-in-online-resa">
+            <div class="bloc-title-reservation bg-img" style="background-image: url(https://static.elloha.com/webgen/img/online-reservation.jpg);" draggable="false">
+                <div class="opacity">
+                    {{#HasBookingActivated}}
+                    <div id="section-BE" class="content-section section-BE-home">
+                        <div class="check-availability content-section">
+                            <div class="rounded-box">
+                                {{>Widget-BE}}
+                                {{>Widget-BE-secure}}
+                            </div>
+                        </div>
+                    </div>
+                    {{/HasBookingActivated}}
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION CALENDAR -->
+        {{#HasCalendarActivated}}
+        {{>Calendar}}
+        {{/HasCalendarActivated}}
+
+        <!-- SECTION NEWSLETTER -->
+        {{#HasNewsletterActivated}}
+        {{>Newsletter}}
+        {{/HasNewsletterActivated}}
+    </main>
+
+    {{>Footer}}
+    {{>CommonScripts}}
+    
+</body>
+</html>

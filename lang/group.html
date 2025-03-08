@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="{{CurrentLang.IsoLang}}" culture="{{CurrentLang.CultureLang}}">
+<head>
+    <title>{{CurrentGroupePrestation.TitreGroupe}} - {{CustomTitle}} - {{City}} - {{Country}}</title>
+    <meta name="description" content="{{CustomTitle}} - {{CurrentGroupePrestation.TitreGroupe}}">
+    {{>CommonMetaTags}}
+    <link rel="canonical" href="{{UrlOffers}}" />
+    <meta property="og:url" content="{{UrlOffers}}" />
+    <meta property="og:title" content="{{CurrentGroupePrestation.TitreGroupe}}" />
+    <meta property="og:image" content="{{#Photos.0}}{{UrlMedias}}/crop-300x200/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.0}}" />
+    <meta property="og:description" content="{{CustomTitle}} - {{CurrentGroupePrestation.TitreGroupe}}" />
+    {{>FaviconTags}}
+    {{>CommonStylesheets}}
+</head>
+
+<body>
+    {{{ScriptAnalytics}}}
+    {{{GoogleTagManagerBody}}}
+    {{>Header}}
+
+    <main>
+        <!-- SECTION TITLE -->
+        <section class="section section-title-general">
+            <div class="content-section principal-title principal-title-other-pages">
+                <h1>{{CurrentGroupePrestation.TitreGroupe}}</h1>
+            </div>
+        </section>
+
+        <!-- SECTION IMG BANNER -->
+        {{#CurrentGroupePrestation.PhotoGroupe}}
+        <img class="img-banner" src="{{UrlMedias}}/crop-2200x400/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}">
+        {{/CurrentGroupePrestation.PhotoGroupe}}
+        {{^CurrentGroupePrestation.PhotoGroupe}}
+        {{#Photos.0}}
+        <img class="img-banner" src="{{UrlMedias}}/crop-2200x400/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}">
+        {{/Photos.0}}
+        {{/CurrentGroupePrestation.PhotoGroupe}}
+
+        <!-- SECTION GROUP/LIST -->
+        <section class="section section-prestas">
+            <div class="content-section">
+
+                <div class="presta-big-contain">
+                    {{#CurrentGroupePrestation.PrestasGroupe}}
+                    <div class="presta-contain" style="background-image: url({{#PhotosPresta.0}}{{UrlMedias}}/crop-600x400/{{IdMedia}}/{{FileNamePhoto}}{{/PhotosPresta.0}});" alt="{{NamePhoto}}">
+                        <div class="infos-contain">
+                            <div class="saw-prices-contain">
+                                {{#MinPricePresta}}
+                                <div class="saw-prices">
+                                    <span class="price-begin">{{ResourcesTemplate.PriceFrom}}</span>
+                                    <span class="presta-price"><strong>{{MinPricePresta}}{{CurrencySymbol}}</strong></span>
+                                </div>
+                                {{/MinPricePresta}}
+                            </div>
+
+                            <div class="infos">
+                                <h3><a href="{{UrlPrestaTemplate}}" itemprop="url">{{TitrePresta}}</a></h3>
+
+                                {{#DescriptionPresta}}
+                                <div class="description-presta-offers">{{{DescriptionPresta}}}</div>
+                                {{/DescriptionPresta}}
+
+                                <div class="capacity-and-btn">
+                                    <div class="capacity-beds">
+                                        {{#isActivity}}
+
+                                        {{#DurationPresta}}
+                                        <div>
+                                            <i class="las la-clock"></i>
+                                            <span>
+                                                {{DurationResume}}
+                                            </span>
+                                        </div>
+                                        {{/DurationPresta}}
+
+                                        {{#AgeMinimum}}
+                                        <div>
+                                            {{#AgeMaximum}}{{ResourcesTemplate.AgeFrom}} {{/AgeMaximum}}
+                                            {{^AgeMaximum}}{{ResourcesTemplate.AgeStartingFrom}} {{/AgeMaximum}}
+                                            {{AgeMinimum}} {{#AgeMaximum}}{{ResourcesTemplate.AgeTo}} {{AgeMaximum}} {{/AgeMaximum}}{{ResourcesTemplate.AgeYears}}
+                                        </div>
+                                        {{/AgeMinimum}}
+
+                                        {{#Difficulty}}
+                                        <div>{{ResourcesTemplate.Difficulty}} {{Difficulty}} / 5</div>
+                                        {{/Difficulty}}
+
+                                        {{#IsAdultRequired}}
+                                        <div>{{ResourcesTemplate.AdultAccompaniment}} : {{{ResourcesTemplate.Required}}}</div>
+                                        {{/IsAdultRequired}}
+
+                                        {{/isActivity}}
+                                    </div>
+
+                                    <div class="btn-contain">
+                                        <a href="{{UrlPrestaTemplate}}" class="btn">{{ResourcesTemplate.SeeDetail}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/CurrentGroupePrestation.PrestasGroupe}}
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION OPTIONS -->
+        {{#HasOptions}}
+        {{>Options}}
+        {{/HasOptions}}
+
+        <!-- SECTION CALENDAR -->
+        {{#HasCalendarActivated}}
+        {{>Calendar}}
+        {{/HasCalendarActivated}}
+
+        <!-- SECTION NEWSLETTER -->
+        {{#HasNewsletterActivated}}
+        {{>Newsletter}}
+        {{/HasNewsletterActivated}}
+    </main>
+
+    {{>Footer}}
+    {{>CommonScripts}}
+    
+</body>
+
+</html>

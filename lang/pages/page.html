@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="{{CurrentLang.IsoLang}}" culture="{{CurrentLang.CultureLang}}">
+<head>
+    <title>{{CurrentPage.TitlePage}} - {{CustomTitle}} - {{City}} - {{Country}}</title>
+    <meta name="description" content="{{CurrentPage.TextPageWithoutHtmlLength150}}">
+    {{>CommonMetaTags}}
+    <link rel="canonical" href="{{UrlPageTemplate}}" />
+    <meta property="og:url" content="{{UrlPageTemplate}}" />
+    <meta property="og:title" content="{{CurrentPage.TitlePage}}" />
+    <meta property="og:image" content="{{#CurrentPage.PhotosPage.0}}{{UrlMedias}}/crop-300x200/{{IdMedia}}/{{FileNamePhoto}}{{/CurrentPage.PhotosPage.0}}{{^CurrentPage.PhotosPage.0}}{{#Photos.0}}{{UrlMedias}}/crop-300x200/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.0}}{{/CurrentPage.PhotosPage.0}}" />
+    <meta property="og:description" content="{{CurrentPage.TextPageLength150}}" />
+    {{>FaviconTags}}
+    {{>CommonStylesheets}}
+</head>
+<body>
+    {{{ScriptAnalytics}}}
+    {{{GoogleTagManagerBody}}}
+    {{>Header}}
+
+    <main>
+        <!-- SECTION TITLE -->
+        <section class="section section-title-general">
+            <div class="content-section principal-title principal-title-other-pages">
+                <h1>{{CurrentPage.TitlePage}}</h1>
+            </div>
+        </section>
+
+        <!-- SECTION IMG BANNER -->
+        {{#CurrentPage.PhotosPage.0}}
+        <img class="img-banner" src="{{UrlMedias}}/crop-2200x400/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}">
+        {{/CurrentPage.PhotosPage.0}}
+        {{^CurrentPage.PhotosPage.0}}
+        {{#Photos.0}}
+        <img class="img-banner" src="{{UrlMedias}}/crop-2200x400/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}">
+        {{/Photos.0}}
+        {{/CurrentPage.PhotosPage.0}}
+
+        <!-- SECTION OTHERS PAGES -->
+        <div class="section section-others-pages">
+            <div class="content-section">
+
+                <div class="other-pages">
+                    {{#Pages}}
+                    <a href="{{UrlPageTemplate}}">{{TitlePage}}</a>
+                    {{/Pages}}
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION NEWS/PAGE -->
+        <div class="section section-news">
+            <div class="content-section content-news">
+
+                <div class="title-descrip-and-photo">
+                    <div class="title-and-descrip title-and-descrip-page">
+                        <div class="contain-hr contain-hr-header">
+                            <hr class="footer-hr">
+                        </div>
+
+                        <div class="description description-page">{{{CurrentPage.TextPage}}}</div>
+
+                        <div class="seeMore5 more-less-btn-contain">
+                            <a href="#" class="more-less-btn">{{ResourcesTemplate.ReadMore}}</a>
+                        </div>
+                        <div class="seeLess5 more-less-btn-contain">
+                            <a href="#" class="more-less-btn">{{ResourcesTemplate.ShowLess}}</a>
+                        </div>
+                    </div>
+
+                    <div class="photo-page-page">
+                        {{#CurrentPage.PhotosPage.1}}
+                        <div class="owl-wrapper">
+                            <div class="owl-carousel owl-theme slider-page-page">
+                                {{#CurrentPage.PhotosPage}}
+                                <div class="photo-page">
+                                    <img src="{{UrlMedias}}/crop-750x560/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}">
+                                </div>
+                                {{/CurrentPage.PhotosPage}}
+                            </div>
+                        </div>
+                        {{/CurrentPage.PhotosPage.1}}
+
+                        {{^CurrentPage.PhotosPage.1}}
+                        {{#CurrentPage.PhotosPage}}
+                        <div class="photo-page">
+                            <img src="{{UrlMedias}}/crop-750x560/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}">
+                        </div>
+                        {{/CurrentPage.PhotosPage}}
+                        {{/CurrentPage.PhotosPage.1}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION NEWSLETTER -->
+        {{#HasNewsletterActivated}}
+        {{>Newsletter}}
+        {{/HasNewsletterActivated}}
+    </main>
+
+    {{>Footer}}
+    {{>CommonScripts}}
+    
+</body>
+</html>

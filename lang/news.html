@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="{{CurrentLang.IsoLang}}" culture="{{CurrentLang.CultureLang}}">
+<head>
+    <title>{{ResourcesTemplate.NewsPageTitle}} - {{CustomTitle}} - {{City}} - {{Country}}</title>
+    <meta name="description" content="{{MetaDescriptionNews}}">
+    {{>CommonMetaTags}}
+    <link rel="canonical" href="{{UrlNews}}" />
+    <meta property="og:url" content="{{UrlNews}}" />
+    <meta property="og:title" content="{{ResourcesTemplate.NewsPageTitle}}" />
+    <meta property="og:image" content="{{#Photos.0}}{{UrlMedias}}/crop-300x200/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.0}}" />
+    <meta property="og:description" content="{{MetaDescriptionNews}}" />
+    {{>FaviconTags}}
+    {{>CommonStylesheets}}
+</head>
+<body>
+    {{{ScriptAnalytics}}}
+    {{{GoogleTagManagerBody}}}
+    {{>Header}}
+    <main>
+        <!-- SECTION TITLE -->
+        <section class="section section-title-general">
+            <div class="content-section principal-title principal-title-other-pages">
+                <h1>{{ResourcesTemplate.NewsPageTitle}}</h1>
+            </div>
+        </section>
+
+        <!-- SECTION IMG BANNER -->
+        <img class="img-banner" src="{{Url}}/img/book.jpg" alt="{{NamePhoto}}">
+
+        <!-- SECTION OTHERS NEWS -->
+        <div class="section section-others-pages">
+            <div class="content-section">
+
+                <div class="other-pages">
+                    {{#NewsList}}
+                    <a href="#{{IdNews}}">{{TitleNews}}</a>
+                    {{/NewsList}}
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION NEWS/PAGE -->
+        <div class="section section-news">
+            <div class="content-section content-news content-news-news">
+
+                {{#NewsList}}
+                <div class="title-descrip-and-photo" id="{{IdNews}}" data-pagination-item>
+                    <div class="title-and-descrip title-and-descrip-news">
+                        <div class="contain-hr contain-hr-header">
+                            <hr class="footer-hr">
+                        </div>
+
+                        <div class="section-title section-title-page section-title-news-news">
+                            <h2>{{TitleNews}}</h2>
+
+                            <span>{{ArticleCreatedOn}} {{DateNewsString}}</span>
+                        </div>
+
+                        <div class="description description-news-page-news">{{{TextNews}}}</div>
+
+                        <div class="seeMore7 more-less-btn-contain">
+                            <a href="#" class="more-less-btn">{{ResourcesTemplate.ReadMore}}</a>
+                        </div>
+                        <div class="seeLess7 more-less-btn-contain">
+                            <a href="#" class="more-less-btn">{{ResourcesTemplate.ShowLess}}</a>
+                        </div>
+                    </div>
+
+                    <div class="photo-page-page">
+                        {{#ListPhotoNews.0}}
+                        {{#ListPhotoNews.1}}
+                        <div class="owl-wrapper">
+                            <div class="owl-carousel owl-theme slider-page-news">
+                                {{#ListPhotoNews}}
+                                <div class="photo-page">
+                                    <img src="{{UrlMedias}}/crop-750x560/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}">
+                                </div>
+                                {{/ListPhotoNews}}
+                            </div>
+                        </div>
+                        {{/ListPhotoNews.1}}
+                        {{^ListPhotoNews.1}}
+                        {{#ListPhotoNews}}
+                        <div class="photo-page">
+                            <img src="{{UrlMedias}}/crop-750x560/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}">
+                        </div>
+                        {{/ListPhotoNews}}
+                        {{/ListPhotoNews.1}}
+                        {{/ListPhotoNews.0}}
+
+                        {{^ListPhotoNews.0}}
+                        <div class="photo-page">
+                            <img src="https://static.elloha.com/webgen/img/news.jpg" alt="{{NamePhoto}}">
+                        </div>
+                        {{/ListPhotoNews.0}}
+                    </div>
+                </div>
+                {{/NewsList}}
+            </div>
+        </div>
+
+        <!-- SECTION NEWSLETTER -->
+        {{#HasNewsletterActivated}}
+        {{>Newsletter}}
+        {{/HasNewsletterActivated}}
+    </main>
+
+    {{>Footer}}
+    {{>CommonScripts}}
+    
+</body>
+</html>
